@@ -1,0 +1,57 @@
+{
+  "name": "@emmgfx/scroll-shadow",
+  "version": "0.1.0",
+  "description": "Scroll shadow indicators for React using IntersectionObserver",
+  "keywords": [
+    "react",
+    "scroll",
+    "shadow",
+    "intersection-observer"
+  ],
+  "homepage": "https://github.com/emmgfx/scroll-shadow#readme",
+  "bugs": {
+    "url": "https://github.com/emmgfx/scroll-shadow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmgfx/scroll-shadow.git"
+  },
+  "license": "MIT",
+  "author": "Josep Viciana",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "npm run build:js && npm run build:types",
+    "build:js": "node esbuild.config.js",
+    "build:types": "tsc"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "^0.27.0",
+    "rimraf": "^6.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
