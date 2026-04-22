@@ -1,56 +1,64 @@
 import { CodeBlock } from "./components/CodeBlock";
 import { BothDemo, CustomDemo, HorizontalDemo, VerticalDemo } from "./components/Demos";
+import { DemoTabs } from "./components/DemoTabs";
 
 const divider = <div className="w-full h-px bg-(--color-border)" />;
 
-function Badge({ children }: { children: string }) {
-  return (
-    <span className="text-[11px] font-mono px-2 py-0.5 rounded-full border text-(--color-accent) bg-(--color-accent-muted) border-(--color-accent-border)">
-      {children}
-    </span>
-  );
-}
-
-function DemoBlock({
-  title,
-  prop,
-  badge,
-  description,
-  code,
-  demo,
-}: {
-  title: string;
-  prop: string;
-  badge?: string;
-  description: string;
-  code: string;
-  demo: React.ReactNode;
-}) {
-  return (
-    <div className="border-t border-(--color-border)">
-      <div className="px-10 py-8 border-b border-(--color-border) text-left max-sm:px-6 max-sm:py-6">
-        <h3 className="text-xl font-semibold tracking-tight text-(--color-heading) mb-2">{title}</h3>
-        <div className="flex items-center gap-2 mb-1.5">
-          <code className="text-[13px] font-mono px-1.5 py-0.5 rounded bg-(--color-surface) text-(--color-heading)">{prop}</code>
-          {badge && <Badge>{badge}</Badge>}
-        </div>
-        <p className="text-sm text-(--color-body) mt-2">{description}</p>
-      </div>
-      <div className="grid grid-cols-2 max-sm:grid-cols-1" style={{ gridTemplateRows: 240 }}>
-        <div className="order-1 border-r border-(--color-border) overflow-auto max-sm:order-1 max-sm:border-r-0 max-sm:border-b" style={{ height: 240, background: "#292d3e" }}>
-          <CodeBlock>{code}</CodeBlock>
-        </div>
-        <div className="order-2 bg-white dark:bg-[#16171d] max-sm:order-2 max-sm:h-[220px]">
-          {demo}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Page() {
+  const tabs = [
+    {
+      id: "vertical",
+      label: "Vertical",
+      prop: `direction="vertical"`,
+      badge: "default",
+      description: "Shadows appear on top and bottom edges as you scroll vertically.",
+      code: (
+        <CodeBlock>{`<ScrollShadow style={{ height: 200 }}>
+  {/* list items */}
+</ScrollShadow>`}</CodeBlock>
+      ),
+      demo: <VerticalDemo />,
+    },
+    {
+      id: "horizontal",
+      label: "Horizontal",
+      prop: `direction="horizontal"`,
+      description: "Shadows appear on left and right edges as you scroll horizontally.",
+      code: (
+        <CodeBlock>{`<ScrollShadow direction="horizontal">
+  <div style={{ display: "flex" }}>{/* columns */}</div>
+</ScrollShadow>`}</CodeBlock>
+      ),
+      demo: <HorizontalDemo />,
+    },
+    {
+      id: "both",
+      label: "Both directions",
+      prop: `direction="both"`,
+      description: "All four edges show shadows independently based on scroll position.",
+      code: (
+        <CodeBlock>{`<ScrollShadow direction="both" style={{ height: 200 }}>
+  {/* grid content */}
+</ScrollShadow>`}</CodeBlock>
+      ),
+      demo: <BothDemo />,
+    },
+    {
+      id: "custom",
+      label: "Custom shadow",
+      prop: "shadowColor + shadowSize",
+      description: "Customize the shadow color and size to match your design.",
+      code: (
+        <CodeBlock>{`<ScrollShadow shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48}>
+  {/* content */}
+</ScrollShadow>`}</CodeBlock>
+      ),
+      demo: <CustomDemo />,
+    },
+  ];
+
   return (
-    <div className="w-full max-w-[1126px] mx-auto border-x border-(--color-border) min-h-screen flex flex-col text-center">
+    <div className="w-full max-w-[1126px] mx-auto min-[1126px]:border-x min-[1126px]:border-(--color-border) min-h-screen flex flex-col text-center">
 
       {/* Hero */}
       <header className="flex flex-col items-center px-10 pt-20 pb-18 gap-5 max-sm:px-6 max-sm:pt-12 max-sm:pb-12">
@@ -166,46 +174,7 @@ export default function Page() {
           <p className="text-sm text-(--color-body)">Scroll inside each container to see the shadows appear and disappear.</p>
         </div>
 
-        <DemoBlock
-          title="Vertical"
-          prop={`direction="vertical"`}
-          badge="default"
-          description="Shadows appear on top and bottom edges as you scroll vertically."
-          code={`<ScrollShadow style={{ height: 200 }}>
-  {/* list items */}
-</ScrollShadow>`}
-          demo={<VerticalDemo />}
-        />
-
-        <DemoBlock
-          title="Horizontal"
-          prop={`direction="horizontal"`}
-          description="Shadows appear on left and right edges as you scroll horizontally."
-          code={`<ScrollShadow direction="horizontal">
-  <div style={{ display: "flex" }}>{/* columns */}</div>
-</ScrollShadow>`}
-          demo={<HorizontalDemo />}
-        />
-
-        <DemoBlock
-          title="Both directions"
-          prop={`direction="both"`}
-          description="All four edges show shadows independently based on scroll position."
-          code={`<ScrollShadow direction="both" style={{ height: 200 }}>
-  {/* grid content */}
-</ScrollShadow>`}
-          demo={<BothDemo />}
-        />
-
-        <DemoBlock
-          title="Custom shadow"
-          prop="shadowColor + shadowSize"
-          description="Customize the shadow color and size to match your design."
-          code={`<ScrollShadow shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48}>
-  {/* content */}
-</ScrollShadow>`}
-          demo={<CustomDemo />}
-        />
+        <DemoTabs tabs={tabs} />
       </section>
 
       {divider}
