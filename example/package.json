@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@emmgfx/scroll-shadow": "file:..",
+    "@emmgfx/scroll-shadow": "^0.1.0",
     "bright": "^1.0.0",
     "next": "16.2.4",
     "react": "19.2.4",
