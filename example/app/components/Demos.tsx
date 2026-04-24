@@ -1,6 +1,6 @@
 "use client";
 
-import { ScrollShadow } from "@emmgfx/scroll-shadow";
+import { ScrollHint } from "@emmgfx/scroll-hint";
 
 const items = Array.from({ length: 30 }, (_, i) => `Item ${i + 1}`);
 const cols = Array.from({ length: 20 }, (_, i) => `Col ${i + 1}`);
@@ -15,15 +15,15 @@ function ListItem({ children }: { children: string }) {
 
 export function VerticalDemo() {
   return (
-    <ScrollShadow style={{ width: "100%", height: "100%" }}>
+    <ScrollHint style={{ width: "100%", height: "100%" }}>
       {items.map((item) => <ListItem key={item}>{item}</ListItem>)}
-    </ScrollShadow>
+    </ScrollHint>
   );
 }
 
 export function HorizontalDemo() {
   return (
-    <ScrollShadow direction="horizontal" style={{ width: "100%", height: "100%" }}>
+    <ScrollHint direction="horizontal" style={{ width: "100%", height: "100%" }}>
       <div className="flex gap-4 p-4 h-55 md:h-60">
         {cols.map((_, i) => (
           <div key={i} className="flex-none flex flex-col overflow-hidden rounded-lg" style={{ width: 140 }}>
@@ -41,13 +41,13 @@ export function HorizontalDemo() {
           </div>
         ))}
       </div>
-    </ScrollShadow>
+    </ScrollHint>
   );
 }
 
 export function BothDemo() {
   return (
-    <ScrollShadow direction="both" style={{ width: "100%", height: "100%" }}>
+    <ScrollHint direction="both" style={{ width: "100%", height: "100%" }}>
       <div
         className="grid"
         style={{ gridTemplateColumns: `repeat(${cols.length}, 90px)` }}
@@ -63,15 +63,15 @@ export function BothDemo() {
           ))
         )}
       </div>
-    </ScrollShadow>
+    </ScrollHint>
   );
 }
 
 export function CustomDemo() {
   return (
-    <ScrollShadow shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48} style={{ width: "100%", height: "100%" }}>
+    <ScrollHint shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48} style={{ width: "100%", height: "100%" }}>
       {items.map((item) => <ListItem key={item}>{item}</ListItem>)}
-    </ScrollShadow>
+    </ScrollHint>
   );
 }
 
@@ -105,11 +105,11 @@ function ModalShell({ children }: { children: React.ReactNode }) {
 export function LineDemo() {
   return (
     <ModalShell>
-      <ScrollShadow shadowColor="" lineColor="var(--color-border)" style={{ flex: 1, minHeight: 0 }}>
+      <ScrollHint shadowColor="" lineColor="var(--color-border)" style={{ flex: 1, minHeight: 0 }}>
         <div className="px-5 py-3 flex flex-col gap-3 text-left">
           {paragraphs.map((p, i) => <p key={i} className="text-xs text-(--color-body) leading-relaxed">{p}</p>)}
         </div>
-      </ScrollShadow>
+      </ScrollHint>
     </ModalShell>
   );
 }
@@ -117,11 +117,11 @@ export function LineDemo() {
 export function LineShadowDemo() {
   return (
     <ModalShell>
-      <ScrollShadow lineColor="var(--color-border)" style={{ flex: 1, minHeight: 0 }}>
+      <ScrollHint lineColor="var(--color-border)" style={{ flex: 1, minHeight: 0 }}>
         <div className="px-5 py-3 flex flex-col gap-3 text-left">
           {paragraphs.map((p, i) => <p key={i} className="text-xs text-(--color-body) leading-relaxed">{p}</p>)}
         </div>
-      </ScrollShadow>
+      </ScrollHint>
     </ModalShell>
   );
 }

@@ -1,2 +1,2 @@
-export { ScrollShadow } from "./ScrollShadow";
-export type { ScrollShadowProps, ScrollShadowDirection } from "./ScrollShadow";
+export { ScrollHint } from "./ScrollHint";
+export type { ScrollHintProps, ScrollHintDirection } from "./ScrollHint";

@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabs, TabsList, TabsTab, TabsPanels, TabsPanel } from "@emmgfx/activity-tabs";
-import { ScrollShadow } from "@emmgfx/scroll-shadow";
+import { ScrollHint } from "@emmgfx/scroll-hint";
 import { ReactNode } from "react";
 
 export interface DemoTab {
@@ -20,7 +20,7 @@ export function DemoTabs({ tabs }: { tabs: DemoTab[] }) {
 
       {/* Tab list */}
       <TabsList className="border-b border-(--color-border)">
-        <ScrollShadow direction="horizontal" shadowSize={32}>
+        <ScrollHint direction="horizontal" shadowSize={32}>
           <div className="flex">
             {tabs.map((tab) => (
               <TabsTab
@@ -33,7 +33,7 @@ export function DemoTabs({ tabs }: { tabs: DemoTab[] }) {
               </TabsTab>
             ))}
           </div>
-        </ScrollShadow>
+        </ScrollHint>
       </TabsList>
 
       {/* Panels */}

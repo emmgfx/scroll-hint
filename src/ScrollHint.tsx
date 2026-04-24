@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
-export type ScrollShadowDirection = "vertical" | "horizontal" | "both";
+export type ScrollHintDirection = "vertical" | "horizontal" | "both";
 
-export interface ScrollShadowProps extends React.HTMLAttributes<HTMLDivElement> {
-  direction?: ScrollShadowDirection;
+export interface ScrollHintProps extends React.HTMLAttributes<HTMLDivElement> {
+  direction?: ScrollHintDirection;
   shadowColor?: string;
   shadowSize?: number;
   lineColor?: string;
   lineSize?: number;
 }
 
-export function ScrollShadow({
+export function ScrollHint({
   direction = "vertical",
   shadowColor = "rgba(0, 0, 0, 0.15)",
   shadowSize = 20,
@@ -19,7 +19,7 @@ export function ScrollShadow({
   children,
   style,
   ...props
-}: ScrollShadowProps) {
+}: ScrollHintProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);

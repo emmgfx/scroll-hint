@@ -1,20 +1,21 @@
 {
-  "name": "@emmgfx/scroll-shadow",
+  "name": "@emmgfx/scroll-hint",
   "version": "0.2.0",
-  "description": "Scroll shadow indicators for React using IntersectionObserver",
+  "description": "Scroll edge indicators for React using IntersectionObserver",
   "keywords": [
     "react",
     "scroll",
     "shadow",
+    "indicator",
     "intersection-observer"
   ],
-  "homepage": "https://github.com/emmgfx/scroll-shadow#readme",
+  "homepage": "https://github.com/emmgfx/scroll-hint#readme",
   "bugs": {
-    "url": "https://github.com/emmgfx/scroll-shadow/issues"
+    "url": "https://github.com/emmgfx/scroll-hint/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emmgfx/scroll-shadow.git"
+    "url": "git+https://github.com/emmgfx/scroll-hint.git"
   },
   "license": "MIT",
   "author": "Josep Viciana",

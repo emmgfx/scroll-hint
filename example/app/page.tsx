@@ -13,9 +13,9 @@ export default function Page() {
       badge: "default",
       description: "Shadows appear on top and bottom edges as you scroll vertically.",
       code: (
-        <CodeBlock>{`<ScrollShadow style={{ height: 200 }}>
+        <CodeBlock>{`<ScrollHint style={{ height: 200 }}>
   {/* list items */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <VerticalDemo />,
     },
@@ -25,9 +25,9 @@ export default function Page() {
       prop: `direction="horizontal"`,
       description: "Shadows appear on left and right edges as you scroll horizontally.",
       code: (
-        <CodeBlock>{`<ScrollShadow direction="horizontal">
+        <CodeBlock>{`<ScrollHint direction="horizontal">
   <div style={{ display: "flex" }}>{/* columns */}</div>
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <HorizontalDemo />,
     },
@@ -37,9 +37,9 @@ export default function Page() {
       prop: `direction="both"`,
       description: "All four edges show shadows independently based on scroll position.",
       code: (
-        <CodeBlock>{`<ScrollShadow direction="both" style={{ height: 200 }}>
+        <CodeBlock>{`<ScrollHint direction="both" style={{ height: 200 }}>
   {/* grid content */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <BothDemo />,
     },
@@ -49,9 +49,9 @@ export default function Page() {
       prop: "shadowColor + shadowSize",
       description: "Customize the shadow color and size to match your design.",
       code: (
-        <CodeBlock>{`<ScrollShadow shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48}>
+        <CodeBlock>{`<ScrollHint shadowColor="rgba(170, 59, 255, 0.3)" shadowSize={48}>
   {/* content */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <CustomDemo />,
     },
@@ -61,9 +61,9 @@ export default function Page() {
       prop: "lineColor",
       description: "Show a solid line at the edge instead of a gradient shadow.",
       code: (
-        <CodeBlock>{`<ScrollShadow shadowColor="" lineColor="oklch(0.6 0.2 270)">
+        <CodeBlock>{`<ScrollHint shadowColor="" lineColor="oklch(0.6 0.2 270)">
   {/* content */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <LineDemo />,
     },
@@ -73,9 +73,9 @@ export default function Page() {
       prop: "lineColor + shadowColor",
       description: "Combine a solid line with a gradient shadow for a stronger indicator.",
       code: (
-        <CodeBlock>{`<ScrollShadow lineColor="rgba(0,0,0,0.1)">
+        <CodeBlock>{`<ScrollHint lineColor="rgba(0,0,0,0.1)">
   {/* content */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       ),
       demo: <LineShadowDemo />,
     },
@@ -87,13 +87,13 @@ export default function Page() {
       {/* Hero */}
       <header className="flex flex-col items-center px-10 pt-20 pb-18 gap-5 max-sm:px-6 max-sm:pt-12 max-sm:pb-12">
         <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-(--color-border) bg-(--color-surface)">
-          <code className="text-[13px] font-mono text-(--color-accent)">npm install @emmgfx/scroll-shadow</code>
+          <code className="text-[13px] font-mono text-(--color-accent)">npm install @emmgfx/scroll-hint</code>
         </div>
         <h1 className="text-7xl font-medium tracking-[-2px] text-(--color-heading) mt-2 max-sm:text-5xl">
-          scroll-<span className="text-(--color-accent)">shadow</span>
+          scroll-<span className="text-(--color-accent)">hint</span>
         </h1>
         <p className="text-lg text-(--color-body) max-w-md text-center leading-relaxed">
-          Scroll shadow indicators for React — no listeners, no scroll events,
+          Scroll edge indicators for React — no listeners, no scroll events,
           just{" "}
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API"
@@ -107,7 +107,7 @@ export default function Page() {
         </p>
         <div className="flex gap-3 mt-2 flex-wrap justify-center">
           <a
-            href="https://github.com/emmgfx/scroll-shadow"
+            href="https://github.com/emmgfx/scroll-hint"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-(--color-border) text-(--color-heading) text-sm font-medium hover:bg-(--color-surface) transition-colors"
@@ -118,7 +118,7 @@ export default function Page() {
             GitHub
           </a>
           <a
-            href="https://www.npmjs.com/package/@emmgfx/scroll-shadow"
+            href="https://www.npmjs.com/package/@emmgfx/scroll-hint"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-(--color-border) text-(--color-heading) text-sm font-medium hover:bg-(--color-surface) transition-colors"
@@ -182,11 +182,11 @@ export default function Page() {
         <div className="px-10 py-8 border-b border-(--color-border) max-sm:px-6">
           <h2 className="text-2xl font-semibold tracking-tight text-(--color-heading)">Usage</h2>
         </div>
-        <CodeBlock>{`import { ScrollShadow } from "@emmgfx/scroll-shadow";
+        <CodeBlock>{`import { ScrollHint } from "@emmgfx/scroll-hint";
 
-<ScrollShadow style={{ height: 300 }}>
+<ScrollHint style={{ height: 300 }}>
   {/* your content */}
-</ScrollShadow>`}</CodeBlock>
+</ScrollHint>`}</CodeBlock>
       </section>
 
       {divider}

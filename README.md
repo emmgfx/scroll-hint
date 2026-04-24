@@ -1,28 +1,28 @@
-# @emmgfx/scroll-shadow
+# @emmgfx/scroll-hint
 
-Scroll shadow indicators for React. Shows shadows on the edges of a scrollable container to hint that there's more content — no scroll events, no polling, just [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+Scroll edge indicators for React. Shows shadows and/or solid lines on the edges of a scrollable container to hint that there's more content — no scroll events, no polling, just [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
 
 ## Installation
 
 ```bash
-npm install @emmgfx/scroll-shadow
+npm install @emmgfx/scroll-hint
 ```
 
 ## Usage
 
 ```jsx
-import { ScrollShadow } from "@emmgfx/scroll-shadow";
+import { ScrollHint } from "@emmgfx/scroll-hint";
 
-<ScrollShadow style={{ height: 300 }}>
+<ScrollHint style={{ height: 300 }}>
   {/* your scrollable content */}
-</ScrollShadow>
+</ScrollHint>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `direction` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Which axes to observe and show shadows on |
+| `direction` | `"vertical" \| "horizontal" \| "both"` | `"vertical"` | Which axes to observe and show indicators on |
 | `shadowColor` | `string` | `"rgba(0, 0, 0, 0.15)"` | CSS color for the gradient shadow. Set to `""` to disable |
 | `shadowSize` | `number` | `20` | Height/width of the shadow overlays in pixels |
 | `lineColor` | `string` | `undefined` | CSS color for a solid line at the edge. Omit to disable |
@@ -34,25 +34,32 @@ All standard `div` props are forwarded to the outer wrapper element.
 
 **Horizontal scroll:**
 ```jsx
-<ScrollShadow direction="horizontal">
+<ScrollHint direction="horizontal">
   <div style={{ display: "flex" }}>
     {/* columns */}
   </div>
-</ScrollShadow>
+</ScrollHint>
 ```
 
 **Both directions:**
 ```jsx
-<ScrollShadow direction="both" style={{ height: 300 }}>
+<ScrollHint direction="both" style={{ height: 300 }}>
   {/* 2D scrollable content */}
-</ScrollShadow>
+</ScrollHint>
 ```
 
-**Custom shadow:**
+**Solid line instead of shadow:**
 ```jsx
-<ScrollShadow shadowColor="rgba(99, 102, 241, 0.3)" shadowSize={48}>
+<ScrollHint shadowColor="" lineColor="rgba(0,0,0,0.1)">
   {/* content */}
-</ScrollShadow>
+</ScrollHint>
+```
+
+**Line + shadow combined:**
+```jsx
+<ScrollHint lineColor="rgba(0,0,0,0.1)">
+  {/* content */}
+</ScrollHint>
 ```
 
 ## License

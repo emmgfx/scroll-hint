@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "scroll-shadow — React scroll shadow indicators",
+  title: "scroll-hint — React scroll shadow indicators",
   description: "Scroll shadow indicators for React using IntersectionObserver. No scroll events, no polling, just IntersectionObserver.",
 };
 
