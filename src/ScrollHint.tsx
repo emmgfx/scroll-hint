@@ -70,7 +70,7 @@ export function ScrollHint({
   });
 
   return (
-    <div style={{ position: "relative", overflow: "hidden", ...style }} {...props}>
+    <div style={{ position: "relative", overflow: "hidden", isolation: "isolate", ...style }} {...props}>
       <div
         ref={containerRef}
         style={{
