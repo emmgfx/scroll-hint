@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@emmgfx/activity-tabs": "^0.4.0",
-    "@emmgfx/scroll-hint": "^0.2.0",
+    "@emmgfx/scroll-hint": "^0.2.2",
     "bright": "^1.0.0",
     "lucide-react": "^1.11.0",
     "next": "16.2.4",
