@@ -70,14 +70,15 @@ export function ScrollHint({
   });
 
   return (
-    <div style={{ position: "relative", overflow: "hidden", isolation: "isolate", ...style }} {...props}>
+    <div style={{ position: "relative", display: "flex", flexDirection: "column", overflow: "hidden", isolation: "isolate", ...style }} {...props}>
       <div
         ref={containerRef}
         style={{
+          flex: 1,
+          minHeight: 0,
+          minWidth: 0,
           overflowY: vertical ? "auto" : "hidden",
           overflowX: horizontal ? "auto" : "hidden",
-          height: "100%",
-          width: "100%",
         }}
       >
         <div
