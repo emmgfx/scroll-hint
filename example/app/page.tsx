@@ -199,7 +199,7 @@ export default function Page() {
         <div className="px-10 py-8 border-b border-(--color-border) max-sm:px-6">
           <h2 className="text-2xl font-semibold tracking-tight text-(--color-heading) mb-1">Tailwind CSS</h2>
           <p className="text-sm text-(--color-body)">
-            Use Tailwind's <code className="text-[13px] font-mono px-1.5 py-0.5 rounded bg-(--color-surface)">dark:</code> variant to define the variable inline — no extra stylesheet needed.
+            Use Tailwind&apos;s <code className="text-[13px] font-mono px-1.5 py-0.5 rounded bg-(--color-surface)">dark:</code> variant to define the variable inline — no extra stylesheet needed.
           </p>
         </div>
         <CodeBlock>{`<ScrollHint
