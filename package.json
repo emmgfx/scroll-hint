@@ -1,6 +1,6 @@
 {
   "name": "@emmgfx/scroll-hint",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Scroll edge indicators for React using IntersectionObserver",
   "keywords": [
     "react",
