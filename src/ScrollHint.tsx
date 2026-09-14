@@ -78,6 +78,39 @@ export function ScrollHint({
     return () => observer.disconnect();
   }, [direction, containerRef]);
 
+  // The component scrolls and paints the indicators, it does not lay out the
+  // content: with `horizontal`, block-level siblings stack into a column and
+  // nothing overflows, so there is no scrolling and no indicator ever shows.
+  // Nothing errors either, so the only clue is the layout itself.
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") return;
+    if (!horizontal) return;
+
+    const content = containerRef.current?.firstElementChild;
+    if (!content) return;
+
+    // The sentinels are absolutely positioned, so they are not part of any row
+    const items = [...content.children].filter(
+      (child) => getComputedStyle(child).position !== "absolute"
+    );
+    if (items.length < 2) return;
+
+    // Everything measures zero while hidden, and zero-height items would read
+    // as stacked
+    if (items.some((item) => item.getBoundingClientRect().height === 0)) return;
+
+    const stacked = items.every(
+      (item, index) =>
+        index === 0 ||
+        item.getBoundingClientRect().top >= items[index - 1].getBoundingClientRect().bottom
+    );
+
+    if (stacked)
+      console.error(
+        "[ScrollHint] The children of a horizontal ScrollHint are stacked in a column, so there is nothing to scroll and no indicator will ever show. Wrap them in a row of your own, with display: flex or a grid flowing in columns: the component handles scrolling and indicators, not the layout of the content."
+      );
+  }, [horizontal, containerRef]);
+
   // Kept in a ref so an inline callback does not fire this on every render
   const onEdgesChangeRef = useRef(onEdgesChange);
   useEffect(() => {

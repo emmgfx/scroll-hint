@@ -29,7 +29,7 @@ import { ScrollHint } from "@emmgfx/scroll-hint";
 | `lineSize` | `number` | `1` | Thickness of the solid line in pixels |
 | `transitionDuration` | `string` | `"0.2s"` | How long the indicators take to fade in and out. Set to `"0s"` for no fade |
 | `scrollerRef` | `RefObject<HTMLDivElement \| null>` | `undefined` | Ref to the scrolling element, to drive it from outside. Must be a stable object ref: it is used as the internal ref, not copied into it |
-| `scrollerProps` | `HTMLAttributes<HTMLDivElement>` | `undefined` | Props for the scrolling element — `className` for scroll-snap, `tabIndex` and `aria-label` to make it keyboard reachable... `flex`, `minWidth`, `minHeight` and both `overflow` axes are set by the component and cannot be overridden |
+| `scrollerProps` | `HTMLAttributes<HTMLDivElement>` | `undefined` | Props for the scrolling element — `className` for scroll-snap, `tabIndex` and `aria-label` to make it keyboard reachable... `flex: 1`, `minWidth: 0`, `minHeight: 0` and both `overflow` axes are set by the component and cannot be overridden |
 | `onEdgesChange` | `(edges: ScrollHintEdges) => void` | `undefined` | Called on mount and whenever an edge changes, with `{ top, bottom, left, right }`: `true` means there is more content past that edge. Same state that drives the indicators |
 
 All standard `div` props are forwarded to the outer wrapper element.
@@ -44,6 +44,8 @@ All standard `div` props are forwarded to the outer wrapper element.
   </div>
 </ScrollHint>
 ```
+
+The row is yours: the component handles scrolling and indicators, not the layout of the content. Drop that wrapper and block-level children stack into a column, which never overflows, so nothing scrolls and no indicator shows. In development the component logs an error when it sees that happen.
 
 **Both directions:**
 ```jsx
