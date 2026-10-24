@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@emmgfx/activity-tabs": "^0.4.0",
+    "@emmgfx/activity-tabs": "^0.5.0",
     "@emmgfx/scroll-hint": "^0.3.4",
     "bright": "^1.0.0",
     "lucide-react": "^1.58.0",

@@ -2,7 +2,7 @@
 
 import { Tabs, TabsList, TabsTab, TabsPanels, TabsPanel } from "@emmgfx/activity-tabs";
 import { ScrollHint } from "@emmgfx/scroll-hint";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef, useSyncExternalStore } from "react";
 
 export interface DemoTab {
   id: string;
@@ -14,9 +14,43 @@ export interface DemoTab {
   demo: ReactNode;
 }
 
+// Every demo has its own link (/#horizontal, /#line-shadow...): the URL hash
+// is the source of truth for the active tab
+const subscribeToHash = (onChange: () => void) => {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+};
+const getHash = () => window.location.hash.slice(1);
+const getServerHash = () => "";
+
 export function DemoTabs({ tabs }: { tabs: DemoTab[] }) {
+  const hash = useSyncExternalStore(subscribeToHash, getHash, getServerHash);
+  const hashIsTab = tabs.some((tab) => tab.id === hash);
+  const activeTab = hashIsTab ? hash : tabs[0].id;
+  const rootRef = useRef<HTMLDivElement>(null);
+  const changedByClick = useRef(false);
+
+  // Hash from a link (on load, or a link on the page): tab ids are prefixed,
+  // so the browser doesn't jump. Bring the tab into view inside the tab list
+  // (it scrolls sideways on small screens), then the demos to the top
+  useEffect(() => {
+    if (changedByClick.current) {
+      changedByClick.current = false;
+      return;
+    }
+    if (!hashIsTab) return;
+    document.getElementById(`tab-${hash}`)?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    rootRef.current?.scrollIntoView({ block: "start" });
+  }, [hash, hashIsTab]);
+
+  // Tab → hash. location.replace fires hashchange without adding history
+  const changeTab = (id: string | number | undefined) => {
+    changedByClick.current = true;
+    window.location.replace(`#${id}`);
+  };
+
   return (
-    <Tabs initialActiveTab={tabs[0].id} className="border-t border-(--color-border)">
+    <Tabs ref={rootRef} activeTab={activeTab} onActiveTabChange={changeTab} className="border-t border-(--color-border)">
 
       {/* Tab list */}
       <TabsList className="border-b border-(--color-border)">
@@ -25,6 +59,7 @@ export function DemoTabs({ tabs }: { tabs: DemoTab[] }) {
             {tabs.map((tab) => (
               <TabsTab
                 key={tab.id}
+                id={`tab-${tab.id}`}
                 tabId={tab.id}
                 className="px-6 py-4 text-sm font-medium text-(--color-body) border-b-2 border-transparent whitespace-nowrap hover:text-(--color-heading) transition-colors"
                 activeClassName="px-6 py-4 text-sm font-medium text-(--color-accent) border-b-2 border-(--color-accent) whitespace-nowrap"
